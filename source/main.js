@@ -95,6 +95,7 @@ const gameControl = (function(){
         const ID = gameboard.getSquareID(y,x);
         currPlayer.claimSquare(ID);
 
+        //if there is a winner
         let winner = checkForWinner(players);
         if (winner) {
             console.log(`Player ${winner.number} wins!`)
