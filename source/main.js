@@ -41,8 +41,13 @@ const gameboard = (function () {
         render();
     }
 
+    const getSquareID = (y,x) => {
+        // here we are indexing the grid using a formula where n = the number of columns
+        let n = 3
+        return y * n + x + 1;
+    }
 
-    return {initBoard,render, markSquare};
+    return {initBoard,render, markSquare, getSquareID};
 
 })();
 
@@ -51,12 +56,6 @@ const gameControl = (function(){
     gameboard.initBoard();
     gameboard.render();
     
-    function getSquareID(y,x){
-        // here we are indexing the grid using a formula where n = the number of columns
-        let n = 3
-        return y * 3 + x +1;
-    }
-
     function createPlayer (marker, number) {
         let squaresClaimed = [];
         const claimSquare = (id) => {
@@ -74,10 +73,33 @@ const gameControl = (function(){
     let turn = 0;
     let currPlayer = players[turn];
 
+    function checkForWinner(players) {
+        let winner = null;
+        const WINNING_COMBOS = [[1,2,3], [1,5,9], [1,4,7]];
+        const checkSubset = (parentArray, subsetArray) => {
+            return subsetArray.every((el) => {
+                return parentArray.includes(el);
+            });
+        }
+        WINNING_COMBOS.forEach(combo => {
+            for (let i = 0; i<2; i++){
+                if (checkSubset(players[i].getSquaresClaimed(), combo )) winner = players[i];
+            }
+        });
+
+        return winner
+    }
 
     const takeTurn = (y,x) => {
         gameboard.markSquare(y,x,currPlayer.number);
-        currPlayer.claimSquare(getSquareID(y,x));
+        const ID = gameboard.getSquareID(y,x);
+        currPlayer.claimSquare(ID);
+
+        let winner = checkForWinner(players);
+        if (winner) {
+            console.log(`Player ${winner.number} wins!`)
+        }
+
         if (turn == 0) {turn = 1} else {turn = 0};
         currPlayer = players[turn];
     }
