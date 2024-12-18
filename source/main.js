@@ -66,8 +66,8 @@ const gameControl = (function(){
         return {number, marker, claimSquare, getSquaresClaimed}
     }
     
-    const playerOne = createPlayer("X", 1);
-    const playerTwo = createPlayer("O", 2);
+    const playerOne = createPlayer("⚡", 1);
+    const playerTwo = createPlayer("🎅", 2);
     const players = [playerOne, playerTwo];
 
     let turn = 0;
@@ -75,7 +75,7 @@ const gameControl = (function(){
 
     function checkForWinner(players) {
         let winner = null;
-        const WINNING_COMBOS = [[1,2,3], [1,5,9], [1,4,7]];
+        const WINNING_COMBOS = [ [1,2,3], [1,5,9], [1,4,7], [2,5,8], [3,6,9], [3,5,7], [7,8,9] ];
         const checkSubset = (parentArray, subsetArray) => {
             return subsetArray.every((el) => {
                 return parentArray.includes(el);
@@ -95,19 +95,17 @@ const gameControl = (function(){
         const ID = gameboard.getSquareID(y,x);
         currPlayer.claimSquare(ID);
 
-        //if there is a winner
+        if (turn == 0) {turn = 1} else {turn = 0};
+        currPlayer = players[turn];
+
+        //Check for winner, if no winner, game continues
         let winner = checkForWinner(players);
         if (winner) {
             console.log(`Player ${winner.number} wins!`)
         }
-
-        if (turn == 0) {turn = 1} else {turn = 0};
-        currPlayer = players[turn];
     }
 
     return {takeTurn};
-
-
 
 })();
 
