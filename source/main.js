@@ -12,6 +12,10 @@ const gameboard = (function () {
         }
     }
 
+    const renderUI = () => {
+        
+    }
+
     function createSquare(){
         let state = 0;
         const getState = () => state;
