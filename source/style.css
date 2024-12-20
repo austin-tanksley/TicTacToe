@@ -62,6 +62,9 @@ body{
     background-color: var(--bg);
     width: 167px;
     height: 167px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .reset {
