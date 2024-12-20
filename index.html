@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sig-Fac-Toe-Ry</title>
     <link rel="icon" href="https://fav.farm/⚡">
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="source/style.css">
     <script src="source/main.js" type="text/javascript"></script>
   </head>
   <body>
@@ -14,7 +14,9 @@
       <span id="comment">{{.}}</span>
       <div class="board" id="BOARD">
         <script id = "boardTemplate" type="text/template">
-        
+          {{#squares}}
+            <div class="square" data-y = {{getY()}}></div>
+          {{/squares}}
         </script>
       </div>
     </div>

@@ -1,6 +1,8 @@
 
 const gameboard = (function () {
 
+    let template = $('#boardTemplate').html();
+
     let board = [];
     const initBoard = () => {
         board = [];
@@ -18,6 +20,7 @@ const gameboard = (function () {
 
     function createSquare(){
         let state = 0;
+        
         const getState = () => state;
         const setState = (player) => state = player;
 
@@ -94,7 +97,7 @@ const gameControl = (function(){
         return winner
     }
 
-    const takeTurn = (y,x) => {
+    const takeTurn = (y,x) => { 
         gameboard.markSquare(y,x,currPlayer.number);
         const ID = gameboard.getSquareID(y,x);
         currPlayer.claimSquare(ID);

@@ -1,0 +1,14 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    --bg: #E7E7E7;
+    
+}
+
+body{
+    background-color: var(--bg);
+}
+
+.h1 {
+    color: red;
+}
