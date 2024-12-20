@@ -59,6 +59,11 @@ const gameboard = (function () {
         })
     }
     const clickTurn = (y,x) => {
+        if (board[y][x].getState() !== 0) {
+            gameboard.comment.textContent = "Square already taken! Choose another.";
+            return; // Stop execution if the square is already taken
+        }
+
         if (gameControl.getTurn() == 0) {
             gameControl.takeTurn(y,x);
             updateUI();
@@ -120,8 +125,9 @@ const gameControl = (function(){
             squaresClaimed.push(id);
         }
         const getSquaresClaimed = () => squaresClaimed;
+        const reset = () => squaresClaimed = [];
         // const addScore = () => score++;
-        return {number, marker, claimSquare, getSquaresClaimed}
+        return {number, marker, claimSquare, getSquaresClaimed, reset}
     }
     
     const playerOne = createPlayer("source/img/marker_01.png", 1);
@@ -203,7 +209,22 @@ const gameControl = (function(){
         takeTurn(y,x)
         gameboard.updateUI();
     }
-    return {takeTurn, getTurn, aiTurn};
+    
+    const resetGame = () => {
+        gameboard.initBoard();
+        gameboard.renderUI();
+        players.forEach(player => {
+            player.reset();
+        })
+        turn = 0;
+        currPlayer = players[turn];
+        console.log("Game reset!");
+        gameboard.comment.textContent = "You go first! Pick a square ya filthy animal.";
+    };
+
+    
+
+    return {takeTurn, getTurn, aiTurn, resetGame};
 
 })();
 

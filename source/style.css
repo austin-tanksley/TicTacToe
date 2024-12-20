@@ -8,7 +8,26 @@
     --bg: #E7E7E7;
     
 }
-
+.bgImg_01{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+.bgImg_02{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+}
+.bgImg_03{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+.bgImg_04{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
 body{
     height: 100dvh;
     background-color: var(--bg);
@@ -40,4 +59,14 @@ body{
     background-color: var(--bg);
     width: 167px;
     height: 167px;
+}
+
+.reset {
+    font-family: undefined-medium;
+    font-size: 1.2em;
+    background-color: #E7E7E7;
+    color: red;
+    padding: .5rem 1.5rem;
+    border: 3px solid red;
+    
 }
