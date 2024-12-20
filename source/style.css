@@ -7,6 +7,7 @@
     padding: 0px;
     --bg: #E7E7E7;
     --cellwidth: 156px;
+    --cellwidth-xs: 123px;
     
 }
 .bgImg_01{
@@ -74,7 +75,9 @@ body{
 }
 @media (max-width: 1375px) {
     .bgImg{
-        opacity: 0;
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
     }
 }
 
@@ -85,6 +88,16 @@ body{
     .cell{
         width:var(--cellwidth) ;
         height: var(--cellwidth);
+    }
+
+}
+@media (max-width: 474px) {
+    .board {
+        width: 375px;
+    }
+    .cell{
+        width:var(--cellwidth-xs) ;
+        height: var(--cellwidth-xs);
     }
 
 }
