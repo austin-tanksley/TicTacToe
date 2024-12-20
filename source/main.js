@@ -208,6 +208,12 @@ const gameControl = (function(){
         }  
         takeTurn(y,x)
         gameboard.updateUI();
+
+         winner = checkForWinner(players);
+        if (winner) {
+            gameboard.comment.textContent = `Player ${winner.number} wins!`;
+            turn = 1;
+        }
     }
     
     const resetGame = () => {
